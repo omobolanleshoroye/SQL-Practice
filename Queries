@@ -1,1 +1,47 @@
+--1.
+SELECT *
+FROM patients
+WHERE age > 50 AND cholesterol >= 240 AND weight >= 200
+ORDER BY cholesterol DESC;
 
+-- returns patients over the age of 50 with cholesterol level of 240 or over, and weight 200 or greater ordered by Cholesterol from Highest to Lowest.
+
+
+--2. 
+SELECT employee_id
+FROM employees 
+order by birth_date ASC 
+limit 3;
+-- returns IDs of 3 oldest employees
+
+
+--3.
+SELECT * 
+FROM bakery_items 
+where product_name like '%chocolate%'
+--returns bakery items that contain the word "Chocolate".
+
+
+--4. 
+SELECT candidate_id
+FROM candidates 
+where problem_solving = 'X' AND
+sql_experience = 'X' AND
+domain_knowledge = 'X' AND
+(python = 'X' OR r_programming = 'X')
+order by candidate_id ASC
+--returns all the candidate IDs that have problem solving skills, SQL experience, knows Python or R, and has domain knowledge. Ordered by output on IDs from smallest to largest
+
+
+--5.
+SELECT Customer_ID, TRIM(SUBSTRING_INDEX(Full_Name, ' ', 1)) AS First_Name
+FROM customers;
+--returns the customer ID with only the first name of each customer.
+
+
+--6. 
+SELECT customer_id
+FROM customers 
+WHERE TIMESTAMPDIFF(YEAR, birth_date, '2023-01-01') >= 55
+ORDER BY customer_id;
+--return all Customer IDs who qualify for the senior citizen (=>55 years) discount in ascending order assuming the current date is 1/1/2023.
