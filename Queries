@@ -44,4 +44,38 @@ SELECT customer_id
 FROM customers 
 WHERE TIMESTAMPDIFF(YEAR, birth_date, '2023-01-01') >= 55
 ORDER BY customer_id;
---return all Customer IDs who qualify for the senior citizen (=>55 years) discount in ascending order assuming the current date is 1/1/2023.
+--returns all Customer IDs who qualify for the senior citizen (=>55 years) discount in ascending order assuming the current date is 1/1/2023.
+
+
+--7.
+SELECT post_id, (actions/impressions * 100) AS popularity
+FROM linkedin_posts 
+WHERE (actions/impressions * 100) >= 1
+order by popularity DESC;
+--returns all the post IDs and their popularity where the score is 1 or greater.
+
+
+--8.
+SELECT company, ROUND((employees_fired / company_size) * 100,2) as percentage 
+FROM tech_layoffs
+ORDER BY company asc;
+--returns the company and the percentage (to 2 decimal places) of laid off employees ordered by company name alphabetically.
+
+
+--9.
+SELECT SUBSTRING(ID, 1, 5) AS ID, SUBSTRING(ID, 6) AS First_Name
+FROM bad_data;
+--splits data in a column into 2 columns.
+
+
+--10.
+WITH food_regions_grouped AS (
+SELECT region, SUM(fast_food_millions) AS total_spending
+FROM food_regions
+GROUP BY region
+ORDER BY total_spending DESC 
+LIMIT 1
+  )
+SELECT region
+  FROM food_regions_grouped;
+--returns the region that spends the most amount of money on fast food.
